@@ -1,0 +1,1 @@
+gcloud container builds submit --config="builders/dc/cloudbuild.yml" builders/dc
