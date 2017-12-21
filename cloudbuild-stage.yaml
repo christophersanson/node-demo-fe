@@ -62,7 +62,6 @@ steps:
 
       ls -p
   ]
-  # secretEnv: ['GITHUB_TOKEN']
 
 # - name: 'eroadltd/ubuntu-git-hub'
 #   entrypoint: 'bash'
