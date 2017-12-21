@@ -1,8 +1,8 @@
 steps:
 # #Fetch node_modules
-# - id: 'Fetch cached node_modules'
-#   name: gcr.io/cloud-builders/gsutil
-#   args: ['cp', 'gs://js-demo-fe-cache/node_modules.tar.gz', 'previous_node_modules.tar.gz']
+- id: 'Fetch cached node_modules'
+  name: gcr.io/cloud-builders/gsutil
+  args: ['cp', 'gs://js-demo-fe-cache/node_modules.tar.gz', 'previous_node_modules.tar.gz']
 # - id: 'Decompress node_modules'
 #   name: gcr.io/cloud-builders/wget
 #   entrypoint: 'sh'
@@ -48,14 +48,18 @@ steps:
 #   args: ['cp', 'node_modules.tar.gz', 'gs://js-demo-fe-cache/node_modules.tar.gz']
 
 # Submit PR
-- name: 'gcr.io/cloud-builders/wget'
-  entrypoint: 'bash'
-  args:
-    - '-c'
-    - |
-      touch test.txt
-  ]
-  env: ['FIREBASE_APP=$_FIREBASE_APP']
+# - name: 'gcr.io/cloud-builders/wget'
+#   entrypoint: 'bash'
+#   args:
+#     - '-c'
+#     - |
+#       cat <<EOF > /.config/hub
+#       github.com:
+#       - user: christophersanson
+#         oauth_token: test
+#         protocol: https
+#       EOF
+#   ]
 
 # - name: 'eroadltd/ubuntu-git-hub'
 #   entrypoint: 'bash'
