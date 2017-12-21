@@ -29,7 +29,7 @@ steps:
   args:
       - '-c'
       - |
-        mkdir node_modules
+        mkdir node_modules && touch dummy.txt
 - name: gcr.io/cloud-builders/wget
   entrypoint: 'sh'
   args:
