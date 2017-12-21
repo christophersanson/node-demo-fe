@@ -13,6 +13,6 @@ steps:
 - id: 'Build'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'run', 'build' ]
-- id: 'Deploy to production'
+- id: 'Deploy'
   name: 'gcr.io/$PROJECT_ID/firebase-builder'
-  args: [ 'deploy', '-P', 'js-demo-fe-prod', '--token', '1/t_PDRgQ3QSsOR3v0z-HwMGtmZu_Bp8ttGrJCsgFrs8PtnSd0B0d_cXhXNbPabhRH']
+  args: [ 'deploy', '-P', '$_FIREBASE_APP', '--token', '1/t_PDRgQ3QSsOR3v0z-HwMGtmZu_Bp8ttGrJCsgFrs8PtnSd0B0d_cXhXNbPabhRH']
