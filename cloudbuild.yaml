@@ -1,13 +1,22 @@
 steps:
-- name: 'gcr.io/cloud-builders/npm'
+- id: 'Install dependencies'
+  name: 'gcr.io/cloud-builders/npm'
   args: [ 'install' ]
-- name: 'gcr.io/cloud-builders/npm'
+- id: 'postinstall'
+  name: 'gcr.io/cloud-builders/npm'
+  args: [ 'run', 'postinstall' ]
+- id: 'Unit tests'
+  name: 'gcr.io/cloud-builders/npm'
   args: [ 'test' ]
-- name: 'gcr.io/cloud-builders/npm'
+- id: 'Run build.prod'
+  name: 'gcr.io/cloud-builders/npm'
   args: [ 'run', 'build.prod' ]
-- name: 'gcr.io/$PROJECT_ID/firebase-builder'
+- id: 'Firebase deploy to production'
+  name: 'gcr.io/$PROJECT_ID/firebase-builder'
   args: [ 'deploy', '-P', 'js-demo-fe-prod', '--token', '1/t_PDRgQ3QSsOR3v0z-HwMGtmZu_Bp8ttGrJCsgFrs8PtnSd0B0d_cXhXNbPabhRH']
-- name: 'gcr.io/cloud-builders/npm'
+- id: 'Create docs'
+  name: 'gcr.io/cloud-builders/npm'
   args: [ 'run', 'compodoc' ]
-- name: 'gcr.io/cloud-builders/gsutil'
+- id: 'Push docs to GCS'
+  name: 'gcr.io/cloud-builders/gsutil'
   args: [ 'cp', '-r', 'documentation', 'gs://js-demo-fe-docs' ]  
