@@ -2,12 +2,15 @@ steps:
 - id: 'Install dependencies'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'install' ]
-# - id: 'Unit tests'
-#   name: 'gcr.io/cloud-builders/npm'
-#   args: [ 'test' ]
+- id: 'Lint'
+  name: 'gcr.io/cloud-builders/npm'
+  args: [ 'run', 'lint' ]
+- id: 'Unit test'
+  name: 'gcr.io/cloud-builders/npm'
+  args: [ 'test' ]
 - id: 'Build'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'run', 'build' ]
-- id: 'Firebase deploy to production'
+- id: 'Deploy to production'
   name: 'gcr.io/$PROJECT_ID/firebase-builder'
   args: [ 'deploy', '-P', 'js-demo-fe-prod', '--token', '1/t_PDRgQ3QSsOR3v0z-HwMGtmZu_Bp8ttGrJCsgFrs8PtnSd0B0d_cXhXNbPabhRH']
