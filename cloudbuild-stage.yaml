@@ -48,18 +48,18 @@ steps:
 #   args: ['cp', 'node_modules.tar.gz', 'gs://js-demo-fe-cache/node_modules.tar.gz']
 
 # Submit PR
-# - name: 'gcr.io/cloud-builders/wget'
-#   entrypoint: 'bash'
-#   args:
-#     - '-c'
-#     - |
-#       cat <<EOF > /.config/hub
-#       github.com:
-#       - user: christophersanson
-#         oauth_token: test
-#         protocol: https
-#       EOF
-#   ]
+- name: 'gcr.io/cloud-builders/wget'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      cat <<EOF > /.config/hub
+      github.com:
+      - user: christophersanson
+        oauth_token: $$_FIREBASE_APP
+        protocol: https
+      EOF
+  ]
 
 # - name: 'eroadltd/ubuntu-git-hub'
 #   entrypoint: 'bash'
