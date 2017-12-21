@@ -48,8 +48,8 @@ steps:
 #   args: ['cp', 'node_modules.tar.gz', 'gs://js-demo-fe-cache/node_modules.tar.gz']
 
 # Submit PR
-- name: 'eroadltd/wget'
-  entrypoint: 'sh'
+- name: 'gcr.io/cloud-builders/wget'
+  entrypoint: 'bash'
   args:
     - '-c'
     - |
@@ -63,7 +63,7 @@ steps:
   # secretEnv: ['GITHUB_TOKEN']
 
 - name: 'eroadltd/ubuntu-git-hub'
-  entrypoint: 'sh'
+  entrypoint: 'bash'
   args:
     - '-c'
     - |
