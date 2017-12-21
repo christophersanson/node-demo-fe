@@ -50,9 +50,10 @@ steps:
 # Submit PR
 - name: 'tianon/github-hub'
   entrypoint: 'bash'
-  args: [
-    '-c',
-    'hub pull-request -f -m 'Promote to Prod' -b https://github.com/christophersanson/js-demo-fe:stable -h https://github.com/christophersanson/js-demo-fe:master'
+  args:
+    - '-c'
+    - |
+      hub pull-request -f -m 'Promote to Prod' -b https://github.com/christophersanson/js-demo-fe:stable -h https://github.com/christophersanson/js-demo-fe:master
     # git request-pull https://$$GITHUB_TOKEN@github.com/christophersanson/js-demo-fe.git master:stable'
   ]
   # secretEnv: ['GITHUB_TOKEN']
