@@ -15,6 +15,8 @@ steps:
 - id: 'Build'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'run', 'build' ]
+  env:
+  - '_FIREBASE_APP=$_FIREBASE_APP'
 # - id: 'Deploy'
 #   name: 'gcr.io/$PROJECT_ID/firebase-builder'
 #   args: [ 'deploy', '-P', '$_FIREBASE_APP', '--token', '1/t_PDRgQ3QSsOR3v0z-HwMGtmZu_Bp8ttGrJCsgFrs8PtnSd0B0d_cXhXNbPabhRH']
