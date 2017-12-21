@@ -28,7 +28,9 @@ steps:
 
 - id: 'Deploy'
   name: 'gcr.io/$PROJECT_ID/firebase-builder'
-  args: [ 'deploy', '-P', '$_FIREBASE_APP', '--token', '$FIREBASE_TOKEN']
+  entrypoint: 'bash'
+  args: [ '-c', 'deploy -P $$FIREBASE_APP --token $$FIREBASE_TOKEN' ]
+  env: ['FIREBASE_APP=$_FIREBASE_APP']
   secretEnv: ['FIREBASE_TOKEN']
 
 - id: 'Compress node_modules'
