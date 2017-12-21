@@ -1,12 +1,12 @@
 steps:
-# - name: gcr.io/cloud-builders/gsutil
-#   args: ['cp', 'gs://js-demo-fe-cache/node-modules.tar.gz', 'previous_node-modules.tar.gz']
-# - name: gcr.io/cloud-builders/wget
-#   entrypoint: 'sh'
-#   args:
-#       - '-c'
-#       - |
-#         tar -xzvf previous_node-modules.tar.gz node_modules
+- name: gcr.io/cloud-builders/gsutil
+  args: ['cp', 'gs://js-demo-fe-cache/node_modules.tar.gz', 'previous_node-modules.tar.gz']
+- name: gcr.io/cloud-builders/wget
+  entrypoint: 'sh'
+  args:
+      - '-c'
+      - |
+        tar -xzvf previous_node_modules.tar.gz node_modules
 - id: 'Install dependencies'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'install' ]
