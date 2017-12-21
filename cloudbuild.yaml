@@ -10,27 +10,25 @@ steps:
 - id: 'Install dependencies'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'install' ]
-# - id: 'Lint'
-#   name: 'gcr.io/cloud-builders/npm'
-#   args: [ 'run', 'lint' ]
-# - id: 'Unit test'
-#   name: 'gcr.io/cloud-builders/npm'
-#   args: [ 'test' ]
-#   env:
-#   - 'CI=true'
-# - id: 'Build'
-#   name: 'gcr.io/cloud-builders/npm'
-#   args: [ 'run', 'build' ]
-# - id: 'Deploy'
-#   name: 'gcr.io/$PROJECT_ID/firebase-builder'
-#   args: [ 'deploy', '-P', '$_FIREBASE_APP', '--token', '1/t_PDRgQ3QSsOR3v0z-HwMGtmZu_Bp8ttGrJCsgFrs8PtnSd0B0d_cXhXNbPabhRH']
-- name: gcr.io/cloud-builders/wget
-  entrypoint: 'sh'
-  args:
-      - '-c'
-      - |
-        tar -czvf node_modules.tar.gz node_modules
-- name: gcr.io/cloud-builders/gsutil
-  args: ['cp', 'node-modules.tar.gz', 'gs://js-demo-fe-cache/node-modules.tar.gz']
+- id: 'Lint'
+  name: 'gcr.io/cloud-builders/npm'
+  args: [ 'run', 'lint' ]
+- id: 'Unit test'
+  name: 'gcr.io/cloud-builders/npm'
+  args: [ 'test' ]
   env:
-  - '_FIREBASE_APP=$_FIREBASE_APP'
+  - 'CI=true'
+- id: 'Build'
+  name: 'gcr.io/cloud-builders/npm'
+  args: [ 'run', 'build' ]
+- id: 'Deploy'
+  name: 'gcr.io/$PROJECT_ID/firebase-builder'
+  args: [ 'deploy', '-P', '$_FIREBASE_APP', '--token', '1/t_PDRgQ3QSsOR3v0z-HwMGtmZu_Bp8ttGrJCsgFrs8PtnSd0B0d_cXhXNbPabhRH']
+# - name: gcr.io/cloud-builders/wget
+#   entrypoint: 'sh'
+#   args:
+#       - '-c'
+#       - |
+#         tar -czvf node_modules.tar.gz node_modules
+# - name: gcr.io/cloud-builders/gsutil
+#   args: ['cp', 'node-modules.tar.gz', 'gs://js-demo-fe-cache/node-modules.tar.gz']
