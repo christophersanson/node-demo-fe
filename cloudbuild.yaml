@@ -10,6 +10,7 @@ steps:
   args: [ 'test' ]
   env:
   - 'CHROME_BIN=chromium-browser'
+  - 'GCB=true'
 - id: 'Run build.prod'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'run', 'build.prod' ]
@@ -21,4 +22,4 @@ steps:
   args: [ 'run', 'compodoc' ]
 - id: 'Push docs to GCS'
   name: 'gcr.io/cloud-builders/gsutil'
-  args: [ 'cp', '-r', 'documentation', 'gs://js-demo-fe-docs' ]  
+  args: [ 'cp', '-r', 'documentation', 'gs://js-demo-fe-docs' ]
