@@ -54,13 +54,11 @@ steps:
     - '-c'
     - |
       cat <<EOF > /.config/hub
-        github.com:
-        - user: christophersanson
-          oauth_token: test
-          protocol: https
+      github.com:
+      - user: christophersanson
+        oauth_token: test
+        protocol: https
       EOF
-
-      ls -p
   ]
 
 # - name: 'eroadltd/ubuntu-git-hub'
