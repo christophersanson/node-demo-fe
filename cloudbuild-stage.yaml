@@ -57,6 +57,7 @@ steps:
   ]
   env:
   - 'HUB_VERBOSE=1'
+  - 'GITHUB_TOKEN=abc'
   # secretEnv: ['GITHUB_TOKEN']
 
 # secrets:
