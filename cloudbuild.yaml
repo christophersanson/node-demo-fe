@@ -9,7 +9,6 @@ steps:
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'test' ]
   env:
-  - 'CHROME_BIN=chromium-browser'
   - 'GCB=true'
 - id: 'Run build.prod'
   name: 'gcr.io/cloud-builders/npm'
