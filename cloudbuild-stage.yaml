@@ -53,7 +53,7 @@ steps:
   args:
     - '-c'
     - |
-      hub pull-request -f -m 'Promote to Prod' -b https://github.com/christophersanson/js-demo-fe:stable -h https://github.com/christophersanson/js-demo-fe:master
+      hub pull-request -f -m 'Promote to Prod' -b https://$$GITHUB_TOKEN@github.com/christophersanson/js-demo-fe:stable -h https://$$GITHUB_TOKEN@github.com/christophersanson/js-demo-fe:master
   ]
   secretEnv: ['GITHUB_TOKEN']
 
