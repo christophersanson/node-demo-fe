@@ -7,9 +7,9 @@ steps:
 #       - '-c'
 #       - |
 #         tar -xzvf previous_node-modules.tar.gz node_modules
-- id: 'Install dependencies'
-  name: 'gcr.io/cloud-builders/npm'
-  args: [ 'install' ]
+# - id: 'Install dependencies'
+#   name: 'gcr.io/cloud-builders/npm'
+#   args: [ 'install' ]
 # - id: 'Lint'
 #   name: 'gcr.io/cloud-builders/npm'
 #   args: [ 'run', 'lint' ]
