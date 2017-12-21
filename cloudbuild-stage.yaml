@@ -48,7 +48,7 @@ steps:
 #   args: ['cp', 'node_modules.tar.gz', 'gs://js-demo-fe-cache/node_modules.tar.gz']
 
 # Submit PR
-- name: 'eroadltd/ubuntu-git-hub'
+- name: 'eroadltd/wget'
   entrypoint: 'sh'
   args:
     - '-c'
@@ -58,7 +58,7 @@ steps:
         - user: christophersanson
           oauth_token: $${GITHUB_TOKEN}
           protocol: https
-        EOF
+      EOF
   ]
   secretEnv: ['GITHUB_TOKEN']
 
@@ -71,6 +71,7 @@ steps:
   ]
   env:
   - 'HUB_VERBOSE=1'
+  - 'HUB_CONFIG=/.config/hub'
 
 secrets:
 # - kmsKeyName: projects/csanson-test/locations/global/keyRings/js-demo-fe/cryptoKeys/firebase-token
