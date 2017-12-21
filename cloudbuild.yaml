@@ -1,14 +1,14 @@
 steps:
-# - id: 'Fetch cached node_modules'
-#   name: gcr.io/cloud-builders/gsutil
-#   args: ['cp', 'gs://js-demo-fe-cache/node_modules.tar', 'previous_node_modules.tar']
-# - id: 'Decompress node_modules'
-#   name: gcr.io/cloud-builders/wget
-#   entrypoint: 'sh'
-#   args:
-#       - '-c'
-#       - |
-#         tar -xf previous_node_modules.tar node_modules
+- id: 'Fetch cached node_modules'
+  name: gcr.io/cloud-builders/gsutil
+  args: ['cp', 'gs://js-demo-fe-cache/node_modules.tar.gz', 'previous_node_modules.tar.gz']
+- id: 'Decompress node_modules'
+  name: gcr.io/cloud-builders/wget
+  entrypoint: 'sh'
+  args:
+      - '-c'
+      - |
+        tar -xzf previous_node_modules.tar.gz node_modules
 - id: 'Install dependencies'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'install' ]
@@ -32,7 +32,7 @@ steps:
   args:
       - '-c'
       - |
-        tar -cf node_modules.tar node_modules
+        tar -czf node_modules.tar.gz node_modules
 - id: 'Cache node_modules in GCS'
   name: gcr.io/cloud-builders/gsutil
-  args: ['cp', 'node_modules.tar', 'gs://js-demo-fe-cache/node_modules.tar']
+  args: ['cp', 'node_modules.tar.gz', 'gs://js-demo-fe-cache/node_modules.tar.gz']
