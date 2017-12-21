@@ -56,7 +56,7 @@ steps:
       cat <<EOF > .config/hub
         github.com:
         - user: christophersanson
-          oauth_token: $$GITHUB_TOKEN
+          oauth_token: $${GITHUB_TOKEN}
           protocol: https
         EOF
   ]
