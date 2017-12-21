@@ -53,7 +53,7 @@ steps:
   args:
     - '-c'
     - |
-      cat <<EOF > .config/hub
+      cat <<EOF > /.config/hub
         github.com:
         - user: christophersanson
           oauth_token: $${GITHUB_TOKEN}
@@ -74,9 +74,9 @@ steps:
   - 'HUB_CONFIG=/.config/hub'
 
 secrets:
-# - kmsKeyName: projects/csanson-test/locations/global/keyRings/js-demo-fe/cryptoKeys/firebase-token
-#   secretEnv:
-#     FIREBASE_TOKEN: CiQAOuKqqeiN5YdqfFF9qwKxVrcijz8A7ODQvjhLM0624SQKp7cSVgB+NUjs5oJ4PnARrPSbwAMDq6iDejKaht+f0mHtDJkfwsNOjTeHmwoz8p5zYXbP05cf+uQ0m+lNhxEfwTD8cxXU8nU55nzMsrsjQCsBQskQKeXB3Jun
 - kmsKeyName: projects/csanson-test/locations/global/keyRings/js-demo-be/cryptoKeys/github-token
   secretEnv:
     GITHUB_TOKEN: CiQAbhNgM1F4lsL8uNZHUbtwGVmGGXgv+VVxCn03Oa28xs5ccRwSUADhjamOVE7JpLxxbws/TxqECnR5BawRxUNzHNB5GCmCzP9nxA1s+1wneXmN+Z463yWoqFPpJ+ekYN0M1BZ9+QxauwTqNuSJ5G3kJJ4yy2Hl
+# - kmsKeyName: projects/csanson-test/locations/global/keyRings/js-demo-fe/cryptoKeys/firebase-token
+#   secretEnv:
+#     FIREBASE_TOKEN: CiQAOuKqqeiN5YdqfFF9qwKxVrcijz8A7ODQvjhLM0624SQKp7cSVgB+NUjs5oJ4PnARrPSbwAMDq6iDejKaht+f0mHtDJkfwsNOjTeHmwoz8p5zYXbP05cf+uQ0m+lNhxEfwTD8cxXU8nU55nzMsrsjQCsBQskQKeXB3Jun
