@@ -56,10 +56,12 @@ steps:
       cat <<EOF > /.config/hub
       github.com:
       - user: christophersanson
-        oauth_token: $$_FIREBASE_APP
+        oauth_token: $$FIREBASE_APP
         protocol: https
       EOF
   ]
+  env:
+  - 'FIREBASE_APP=$_FIREBASE_APP'
 
 # - name: 'eroadltd/ubuntu-git-hub'
 #   entrypoint: 'bash'
