@@ -32,3 +32,5 @@ steps:
         tar -czvf node_modules.tar.gz node_modules
 - name: gcr.io/cloud-builders/gsutil
   args: ['cp', 'node-modules.tar.gz', 'gs://js-demo-fe-cache/node-modules.tar.gz']
+  env:
+  - '_FIREBASE_APP=$_FIREBASE_APP'
