@@ -8,6 +8,8 @@ steps:
 - id: 'Unit test'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'test' ]
+  env:
+  - 'CI=true'
 - id: 'Build'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'run', 'build' ]
