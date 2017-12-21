@@ -53,12 +53,7 @@ steps:
   args:
     - '-c'
     - |
-      cat <<EOF > /.config/hub
-      github.com:
-      - user: christophersanson
-        oauth_token: $$FIREBASE_APP
-        protocol: https
-      EOF
+      touch test.txt
   ]
   env: ['FIREBASE_APP=$_FIREBASE_APP']
 
