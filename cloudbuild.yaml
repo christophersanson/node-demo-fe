@@ -1,4 +1,6 @@
 steps:
+# - name: gcr.io/cloud-builders/gsutil
+#   args: ['cp', 'gs://js-demo-fe-cache/node_modules.zip', 'previous_node_modules.zip']
 - id: 'Install dependencies'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'install' ]
@@ -16,3 +18,7 @@ steps:
 - id: 'Deploy'
   name: 'gcr.io/$PROJECT_ID/firebase-builder'
   args: [ 'deploy', '-P', '$_FIREBASE_APP', '--token', '1/t_PDRgQ3QSsOR3v0z-HwMGtmZu_Bp8ttGrJCsgFrs8PtnSd0B0d_cXhXNbPabhRH']
+- name: gcr.io/cloud-builders/ubuntu
+  args: ['zip', '-r', 'node-modules.zip', 'node_modules']
+- name: gcr.io/cloud-builders/gsutil
+  args: ['cp', 'node-modules.zip', 'gs://js-demo-fe-cache/node_modules.zip']
