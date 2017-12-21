@@ -7,9 +7,9 @@ steps:
 #       - '-c'
 #       - |
 #         tar -xzvf previous_node-modules.tar.gz node_modules
-# - id: 'Install dependencies'
-#   name: 'gcr.io/cloud-builders/npm'
-#   args: [ 'install' ]
+- id: 'Install dependencies'
+  name: 'gcr.io/cloud-builders/npm'
+  args: [ 'install' ]
 # - id: 'Lint'
 #   name: 'gcr.io/cloud-builders/npm'
 #   args: [ 'run', 'lint' ]
@@ -29,13 +29,7 @@ steps:
   args:
       - '-c'
       - |
-        mkdir node_modules && touch dummy.txt
-- name: gcr.io/cloud-builders/wget
-  entrypoint: 'sh'
-  args:
-      - '-c'
-      - |
-        tar -czvf node_modules.tar.gz node_modules && ls -p
+        tar -czvf node_modules.tar.gz node_modules
 - name: gcr.io/cloud-builders/gsutil
   args: ['cp', 'node_modules.tar.gz', 'gs://js-demo-fe-cache/node-modules.tar.gz']
   env:
