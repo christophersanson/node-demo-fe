@@ -55,6 +55,8 @@ steps:
     - |
       hub pull-request -f -m 'Promote to Prod' -b https://$$GITHUB_TOKEN@github.com/christophersanson/js-demo-fe:stable -h https://$$GITHUB_TOKEN@github.com/christophersanson/js-demo-fe:master
   ]
+  env:
+  - 'HUB_VERBOSE=1'
   secretEnv: ['GITHUB_TOKEN']
 
 secrets:
