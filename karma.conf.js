@@ -135,4 +135,7 @@ module.exports = function (config) {
     config.singleRun = true;
     config.browserNoActivityTimeout = 90000;
   }
+  config.browsers = ['Chrome_travis_ci'];
+  config.singleRun = true;
+  config.browserNoActivityTimeout = 90000;
 };
