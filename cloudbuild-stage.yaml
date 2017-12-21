@@ -59,19 +59,21 @@ steps:
           oauth_token: test
           protocol: https
       EOF
+
+      ls -p
   ]
   # secretEnv: ['GITHUB_TOKEN']
 
-- name: 'eroadltd/ubuntu-git-hub'
-  entrypoint: 'bash'
-  args:
-    - '-c'
-    - |
-      hub pull-request -f -m 'Promote to Prod' -b https://github.com/christophersanson/js-demo-fe:stable -h https://github.com/christophersanson/js-demo-fe:master
-  ]
-  env:
-  - 'HUB_VERBOSE=1'
-  - 'HUB_CONFIG=/.config/hub'
+# - name: 'eroadltd/ubuntu-git-hub'
+#   entrypoint: 'bash'
+#   args:
+#     - '-c'
+#     - |
+#       hub pull-request -f -m 'Promote to Prod' -b https://github.com/christophersanson/js-demo-fe:stable -h https://github.com/christophersanson/js-demo-fe:master
+#   ]
+#   env:
+#   - 'HUB_VERBOSE=1'
+#   - 'HUB_CONFIG=/.config/hub'
 
 # secrets:
 # - kmsKeyName: projects/csanson-test/locations/global/keyRings/js-demo-be/cryptoKeys/github-token
