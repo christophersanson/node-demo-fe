@@ -2,12 +2,14 @@ steps:
 - id: 'Install dependencies'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'install' ]
-- id: 'postinstall'
+- id: 'Post install fix'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'run', 'postinstall' ]
 - id: 'Unit tests'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'test' ]
+  env:
+  - 'CHROME_BIN=chromium-browser'
 - id: 'Run build.prod'
   name: 'gcr.io/cloud-builders/npm'
   args: [ 'run', 'build.prod' ]
