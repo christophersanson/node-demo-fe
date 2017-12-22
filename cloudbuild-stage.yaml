@@ -71,8 +71,7 @@ steps:
   args:
     - '-c'
     - |
-      git config --global --add hub.host github.com
-      hub pull-request -f -m 'Promote to Prod' -b christophersanson/js-demo-fe:stable -h christophersanson/js-demo-fe:master
+      hub pull-request -f -m 'Promote to Prod' -b stable -h master
   env:
   - 'HUB_VERBOSE=1'
 
