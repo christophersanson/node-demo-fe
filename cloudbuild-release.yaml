@@ -1,0 +1,11 @@
+steps:
+- id: 'Deploy to prod'
+  name: 'gcr.io/$PROJECT_ID/firebase-builder'
+  entrypoint: 'bash'
+  args: [ '-c', 'firebase deploy -P $$FIREBASE_APP --token $$FIREBASE_TOKEN' ]
+  env: ['FIREBASE_APP=$_FIREBASE_APP']
+  secretEnv: ['FIREBASE_TOKEN']
+secrets:
+- kmsKeyName: projects/csanson-test/locations/global/keyRings/js-demo-fe/cryptoKeys/firebase-token
+  secretEnv:
+    FIREBASE_TOKEN: CiQAOuKqqeiN5YdqfFF9qwKxVrcijz8A7ODQvjhLM0624SQKp7cSVgB+NUjs5oJ4PnARrPSbwAMDq6iDejKaht+f0mHtDJkfwsNOjTeHmwoz8p5zYXbP05cf+uQ0m+lNhxEfwTD8cxXU8nU55nzMsrsjQCsBQskQKeXB3Jun
