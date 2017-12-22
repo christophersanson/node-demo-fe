@@ -67,7 +67,6 @@ steps:
     - '-c'
     - |
       hub pull-request -f -m 'Promote to Prod' -b https://github.com/christophersanson/js-demo-fe:stable -h https://github.com/christophersanson/js-demo-fe:master
-  ]
   env:
   - 'HUB_VERBOSE=1'
 
