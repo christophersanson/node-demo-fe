@@ -54,7 +54,8 @@ steps:
     - '-c'
     - |
       echo $$FIREBASE_APP
-      
+      touch .config/hub
+
       cat <<EOF > .config/hub 
       github.com: 
       - user: christophersanson 
