@@ -54,7 +54,6 @@ steps:
     - '-c'
     - |
       echo $$FIREBASE_APP
-      git config --global --add hub.host github.com
 
       mkdir .config
       touch .config/hub
@@ -72,6 +71,7 @@ steps:
   args:
     - '-c'
     - |
+      git config --global --add hub.host github.com
       hub pull-request -f -m 'Promote to Prod' -b christophersanson/js-demo-fe:stable -h christophersanson/js-demo-fe:master
   env:
   - 'HUB_VERBOSE=1'
