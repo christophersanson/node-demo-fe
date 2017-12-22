@@ -1,5 +1,5 @@
 steps:
-- id: 'Deploy'
+- id: 'Deploy to prod'
   name: 'gcr.io/$PROJECT_ID/firebase-builder'
   entrypoint: 'bash'
   args: [ '-c', 'firebase deploy -P $$FIREBASE_APP --token $$FIREBASE_TOKEN' ]

@@ -48,7 +48,8 @@ steps:
   args: ['cp', 'node_modules.tar.gz', 'gs://js-demo-fe-cache/node_modules.tar.gz']
 
 # Submit PR
-- name: 'gcr.io/cloud-builders/git'
+- id: 'Set hub credentials'
+  name: 'gcr.io/cloud-builders/git'
   entrypoint: 'bash'
   args:
     - '-c'
@@ -63,7 +64,8 @@ steps:
         protocol: https 
       EOF
   secretEnv: ['GITHUB_TOKEN']
-- name: 'eroadltd/ubuntu-git-hub'
+- id: 'Submit PR to stable'
+  name: 'eroadltd/ubuntu-git-hub'
   entrypoint: 'bash'
   args:
     - '-c'
