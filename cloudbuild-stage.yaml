@@ -53,6 +53,7 @@ steps:
   args:
     - '-c'
     - |
+      echo $$_FIREBASE_APP
       cat <<EOF > .config/hub 
       github.com: 
       - user: christophersanson 
