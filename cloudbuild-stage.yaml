@@ -48,13 +48,13 @@ steps:
 #   args: ['cp', 'node_modules.tar.gz', 'gs://js-demo-fe-cache/node_modules.tar.gz']
 
 # Submit PR
-- name: 'gcr.io/cloud-builders/wget'
-  entrypoint: 'bash'
-  args:
-    - '-c'
-    - |
-      touch test.txt
-  ]
+# - name: 'gcr.io/cloud-builders/wget'
+#   entrypoint: 'bash'
+#   args:
+#     - '-c'
+#     - |
+#       touch test.txt
+#   ]
 
 # - name: 'eroadltd/ubuntu-git-hub'
 #   entrypoint: 'bash'
