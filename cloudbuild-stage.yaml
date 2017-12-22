@@ -53,7 +53,8 @@ steps:
   args:
     - '-c'
     - |
-      echo $$_FIREBASE_APP
+      echo $$FIREBASE_APP
+      
       cat <<EOF > .config/hub 
       github.com: 
       - user: christophersanson 
@@ -61,7 +62,7 @@ steps:
         protocol: https 
       EOF
   secretEnv: ['GITHUB_TOKEN']
-
+  env: ['FIREBASE_APP=$_FIREBASE_APP']
 - name: 'eroadltd/ubuntu-git-hub'
   entrypoint: 'bash'
   args:
