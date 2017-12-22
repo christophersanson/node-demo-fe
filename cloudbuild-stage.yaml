@@ -72,9 +72,10 @@ steps:
     - '-c'
     - |
       git remote -vv
-      git remote set-url origin https://github.com/christophersanson/js-demo-fe.git
+      git remote set-url origin https://$$GITHUB_TOKEN@github.com/christophersanson/js-demo-fe.git
       git remote -vv
       hub pull-request -f -m 'Promote to Prod' -b stable -h master
+  secretEnv: ['GITHUB_TOKEN']
   env:
   - 'HUB_VERBOSE=1'
 
