@@ -48,12 +48,14 @@ steps:
 #   args: ['cp', 'node_modules.tar.gz', 'gs://js-demo-fe-cache/node_modules.tar.gz']
 
 # Submit PR
-- name: 'gcr.io/cloud-builders/wget'
+- name: 'gcr.io/cloud-builders/git'
   entrypoint: 'bash'
   args:
     - '-c'
     - |
       echo $$FIREBASE_APP
+      git config --global --add hub.host github.com
+
       mkdir .config
       touch .config/hub
 
