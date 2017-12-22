@@ -53,13 +53,12 @@ steps:
   args:
     - '-c'
     - |
-      cat <<EOF > test.txt 
+      cat <<EOF > .config/hub 
       github.com: 
       - user: christophersanson 
-        oauth_token: $$FIREBASE_APP 
+        oauth_token: abc 
         protocol: https 
       EOF
-  ]
 
 # - name: 'eroadltd/ubuntu-git-hub'
 #   entrypoint: 'bash'
