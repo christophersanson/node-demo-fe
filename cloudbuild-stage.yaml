@@ -54,6 +54,7 @@ steps:
     - '-c'
     - |
       echo $$FIREBASE_APP
+      mkdir .config
       touch .config/hub
 
       cat <<EOF > .config/hub 
