@@ -1,8 +1,8 @@
 steps:
 # #Fetch node_modules
-- id: 'Fetch cached node_modules'
-  name: gcr.io/cloud-builders/gsutil
-  args: ['cp', 'gs://js-demo-fe-cache/node_modules.tar.gz', 'previous_node_modules.tar.gz']
+# - id: 'Fetch cached node_modules'
+#   name: gcr.io/cloud-builders/gsutil
+#   args: ['cp', 'gs://js-demo-fe-cache/node_modules.tar.gz', 'previous_node_modules.tar.gz']
 # - id: 'Decompress node_modules'
 #   name: gcr.io/cloud-builders/wget
 #   entrypoint: 'sh'
@@ -28,12 +28,12 @@ steps:
 #   args: [ 'run', 'build' ]
 
 # # Deploy app
-- id: 'Deploy'
-  name: 'gcr.io/$PROJECT_ID/firebase-builder'
-  entrypoint: 'bash'
-  args: [ '-c', 'firebase deploy -P $$FIREBASE_APP --token $$FIREBASE_TOKEN' ]
-  env: ['FIREBASE_APP=$_FIREBASE_APP']
-  secretEnv: ['FIREBASE_TOKEN']
+# - id: 'Deploy'
+#   name: 'gcr.io/$PROJECT_ID/firebase-builder'
+#   entrypoint: 'bash'
+#   args: [ '-c', 'firebase deploy -P $$FIREBASE_APP --token $$FIREBASE_TOKEN' ]
+#   env: ['FIREBASE_APP=$_FIREBASE_APP']
+#   secretEnv: ['FIREBASE_TOKEN']
 
 # # Cache node_modules
 # - id: 'Compress node_modules'
@@ -56,25 +56,25 @@ steps:
       cat <<EOF > .config/hub 
       github.com: 
       - user: christophersanson 
-        oauth_token: abc 
+        oauth_token: $$GITHUB_TOKEN 
         protocol: https 
       EOF
+  secretEnv: ['GITHUB_TOKEN']
 
-# - name: 'eroadltd/ubuntu-git-hub'
-#   entrypoint: 'bash'
-#   args:
-#     - '-c'
-#     - |
-#       hub pull-request -f -m 'Promote to Prod' -b https://github.com/christophersanson/js-demo-fe:stable -h https://github.com/christophersanson/js-demo-fe:master
-#   ]
-#   env:
-#   - 'HUB_VERBOSE=1'
-#   - 'HUB_CONFIG=/.config/hub'
+- name: 'eroadltd/ubuntu-git-hub'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      hub pull-request -f -m 'Promote to Prod' -b https://github.com/christophersanson/js-demo-fe:stable -h https://github.com/christophersanson/js-demo-fe:master
+  ]
+  env:
+  - 'HUB_VERBOSE=1'
 
 secrets:
-# - kmsKeyName: projects/csanson-test/locations/global/keyRings/js-demo-be/cryptoKeys/github-token
-#   secretEnv:
-#     GITHUB_TOKEN: CiQAbhNgM1F4lsL8uNZHUbtwGVmGGXgv+VVxCn03Oa28xs5ccRwSUADhjamOVE7JpLxxbws/TxqECnR5BawRxUNzHNB5GCmCzP9nxA1s+1wneXmN+Z463yWoqFPpJ+ekYN0M1BZ9+QxauwTqNuSJ5G3kJJ4yy2Hl
-- kmsKeyName: projects/csanson-test/locations/global/keyRings/js-demo-fe/cryptoKeys/firebase-token
+- kmsKeyName: projects/csanson-test/locations/global/keyRings/js-demo-be/cryptoKeys/github-token
   secretEnv:
-    FIREBASE_TOKEN: CiQAOuKqqeiN5YdqfFF9qwKxVrcijz8A7ODQvjhLM0624SQKp7cSVgB+NUjs5oJ4PnARrPSbwAMDq6iDejKaht+f0mHtDJkfwsNOjTeHmwoz8p5zYXbP05cf+uQ0m+lNhxEfwTD8cxXU8nU55nzMsrsjQCsBQskQKeXB3Jun
+    GITHUB_TOKEN: CiQAbhNgM1F4lsL8uNZHUbtwGVmGGXgv+VVxCn03Oa28xs5ccRwSUADhjamOVE7JpLxxbws/TxqECnR5BawRxUNzHNB5GCmCzP9nxA1s+1wneXmN+Z463yWoqFPpJ+ekYN0M1BZ9+QxauwTqNuSJ5G3kJJ4yy2Hl
+# - kmsKeyName: projects/csanson-test/locations/global/keyRings/js-demo-fe/cryptoKeys/firebase-token
+#   secretEnv:
+#     FIREBASE_TOKEN: CiQAOuKqqeiN5YdqfFF9qwKxVrcijz8A7ODQvjhLM0624SQKp7cSVgB+NUjs5oJ4PnARrPSbwAMDq6iDejKaht+f0mHtDJkfwsNOjTeHmwoz8p5zYXbP05cf+uQ0m+lNhxEfwTD8cxXU8nU55nzMsrsjQCsBQskQKeXB3Jun
