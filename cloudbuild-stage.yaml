@@ -71,6 +71,7 @@ steps:
   args:
     - '-c'
     - |
+      git remote -vv
       hub pull-request -f -m 'Promote to Prod' -b stable -h master
   env:
   - 'HUB_VERBOSE=1'
