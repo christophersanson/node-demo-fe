@@ -1,3 +1,4 @@
+# Stopped here. need to include dist folder in prod PR
 steps:
 - id: 'Fetch dist folder'
   name: gcr.io/cloud-builders/gsutil
