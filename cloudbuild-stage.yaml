@@ -71,7 +71,7 @@ steps:
         tar -czf $$COMMIT_SHA.tar.gz dist
 - id: 'Push dist folder'
   name: gcr.io/cloud-builders/gsutil
-  args: ['cp', '$$COMMIT_SHA.tar.gz', 'gs://js-demo-fe-dist/$$COMMIT_SHA.tar.gz']
+  args: ['cp', '$COMMIT_SHA.tar.gz', 'gs://js-demo-fe-dist/$COMMIT_SHA.tar.gz']
 
 # Submit PR
 - id: 'Set hub credentials'
