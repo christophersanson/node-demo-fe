@@ -69,7 +69,6 @@ steps:
       git add deploy-sha.txt
       git -c user.email="" -c user.name="GCB Worker" commit -a -m "Update deploy-sha.txt to $$COMMIT_SHA [ci skip]" -v
       git push https://$$GITHUB_TOKEN@github.com/christophersanson/js-demo-fe.git master -v
-  ]
   secretEnv: ['GITHUB_TOKEN']
 
 # Push deployable app folder to GCS
