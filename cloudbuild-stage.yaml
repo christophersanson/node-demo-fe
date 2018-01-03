@@ -60,21 +60,15 @@ steps:
       $$COMMIT_SHA 
       $_FIREBASE_APP
       EOF
-- id: 'Commit file to repo'
-  name: 'gcr.io/cloud-builders/git'
-  args: [
-    '-c', 'user.email=""',
-    '-c', 'user.name="GCB Worker"',
-    'commit', '-a', '-m',
-    'Update deploy-sha.txt to $COMMIT_SHA [ci skip]',
-    '-v'
-  ]
-- id: 'Git push change' 
+- id: 'Commit sha file to repo'
   name: 'gcr.io/cloud-builders/git'
   entrypoint: 'bash'
-  args: [
-    '-c',
-    'git push https://$$GITHUB_TOKEN@github.com/christophersanson/js-demo-fe.git master -v'
+  args:
+    - '-c'
+    - |
+      git add deploy-sha.txt
+      git -c user.email="" -c user.name="GCB Worker" commit -a -m "Update deploy-sha.txt to $$COMMIT_SHA [ci skip]" -v
+      git push https://$$GITHUB_TOKEN@github.com/christophersanson/js-demo-fe.git master -v
   ]
   secretEnv: ['GITHUB_TOKEN']
 
