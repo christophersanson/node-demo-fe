@@ -1,27 +1,15 @@
-# AngularDemo
+# GCB CICD for Firebase Demo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.2.
 
-## Development server
+## Overview
+This repo is set up with Google Container Builder to automate build, test, and deploy workflows for dev, staging, and prod environments
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Deploy to dev
+Push to dev branch to automatically build, test, and deploy the app to the Firebase dev environment as configured in cloudbuild.yaml using a GCB build trigger.
 
-## Code scaffolding
+### Deploy to staging
+Push to master branch to automatically build, test, and deploy the app to the Firebase staging environment as configured in cloudbuild-stage.yaml using a GCB build trigger. The build also saves the generated dist folder in GCS, updates a deploy-sha.txt file with the commit sha, and submit a PR to stable branch for promoting the release from staging to production.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Deploy to production
+Merging in the PR created on a push to master branch triggers a deploy to Firebase production environment as configured in cloudbuild-release.yaml. It parses the commit sha from deploy-sha.txt, pulls in the cached dist folder from GCS, and deploys to Firebase.
