@@ -58,6 +58,7 @@ steps:
 
       cat <<EOF > deploy-sha.txt 
       $$COMMIT_SHA 
+      $_FIREBASE_APP
       EOF
 
 # Push deployable app folder to GCS
