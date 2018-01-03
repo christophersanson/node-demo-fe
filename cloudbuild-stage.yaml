@@ -47,6 +47,31 @@ steps:
   name: gcr.io/cloud-builders/gsutil
   args: ['cp', 'node_modules.tar.gz', 'gs://js-demo-fe-cache/node_modules.tar.gz']
 
+# Tag application code with commit sha
+- id: 'Store commit sha'
+  name: 'gcr.io/cloud-builders/wget'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      touch deploy-sha.txt
+
+      cat <<EOF > deploy-sha.txt 
+      $$COMMIT_SHA 
+      EOF
+
+# Push deployable app folder to GCS
+- id: 'Compress dist'
+  name: gcr.io/cloud-builders/wget
+  entrypoint: 'sh'
+  args:
+      - '-c'
+      - |
+        tar -czf $$COMMIT_SHA.tar.gz dist
+- id: 'Push dist folder'
+  name: gcr.io/cloud-builders/gsutil
+  args: ['cp', '$$COMMIT_SHA.tar.gz', 'gs://js-demo-fe-dist/$$COMMIT_SHA.tar.gz']
+
 # Submit PR
 - id: 'Set hub credentials'
   name: 'gcr.io/cloud-builders/git'

@@ -1,3 +1,4 @@
+# Stopped here. need to include dist folder in prod PR
 steps:
 - id: 'Deploy to prod'
   name: 'gcr.io/$PROJECT_ID/firebase-builder'
