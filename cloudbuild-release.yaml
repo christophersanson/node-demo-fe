@@ -1,4 +1,4 @@
-# Stopped here. need to include dist folder in prod PR
+# Fetch saved dist folder from staging deployment via commit sha
 steps:
 - id: 'Fetch dist folder'
   name: gcr.io/cloud-builders/gsutil
@@ -16,12 +16,15 @@ steps:
       - '-c'
       - |
         tar -xzf dist.tar.gz dist
+
+# Deploy to Firebase
 - id: 'Deploy to prod'
   name: 'gcr.io/$PROJECT_ID/firebase-builder'
   entrypoint: 'bash'
   args: [ '-c', 'firebase deploy -P $$FIREBASE_APP --token $$FIREBASE_TOKEN' ]
   env: ['FIREBASE_APP=$_FIREBASE_APP']
   secretEnv: ['FIREBASE_TOKEN']
+
 secrets:
 - kmsKeyName: projects/csanson-test/locations/global/keyRings/js-demo-fe/cryptoKeys/firebase-token
   secretEnv:
