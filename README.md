@@ -13,3 +13,5 @@ Push to master branch to automatically build, test, and deploy the app to the Fi
 
 ### Deploy to production
 Merging the PR to stable branch triggers a deploy to Firebase production environment as configured in cloudbuild-release.yaml. It parses the commit sha from deploy-sha.txt, pulls in the cached dist folder from GCS, and deploys to Firebase without a rebuild.
+
+test
